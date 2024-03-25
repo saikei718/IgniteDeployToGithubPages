@@ -13,8 +13,8 @@ permissions:
 jobs:
   deploy:
     environment:
-    name: github-pages
-    url: https://example.com/
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: macos-14
     steps:
       - name: checkout
