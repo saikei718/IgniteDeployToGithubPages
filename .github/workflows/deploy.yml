@@ -1,0 +1,27 @@
+name: Build and Deploy Static Site
+
+on:
+  push:
+    branches:
+      - feat/**
+
+jobs:
+  deploy:
+    environment:
+    name: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: macos-14
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build
+        run: swift build -v
+      - name: setup pages
+        uses: actions/configure-pages@v4
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'Build/'
+      - name: deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
