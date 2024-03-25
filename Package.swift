@@ -4,5 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "IgniteDeployToGithubPages"
+    name: "IgniteDeployToGithubPages",
+    platforms: [.macOS(.v13)],
+    dependencies: [
+        .package(url: "https://github.com/twostraws/Ignite.git", branch: "main")
+    ],
+    targets: [
+        .executableTarget(
+            name: "IgniteDeployToGithubPages",
+            dependencies: ["Ignite"]),
+    ]
 )
